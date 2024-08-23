@@ -11,6 +11,7 @@ const container = document.getElementById("container"); // "Traemos" utilizando 
  * imprime el campo "name" y el campo "lastname" separados por un espacio
  */
 function showData(dataArray) {
+  console.log(dataArray);
   // El for itera sobre los elementos del array
   for (const item of dataArray) {
     // En la siguiente línea se utilizan "backticks" para armar el String. Más info => https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Template_literals
@@ -19,3 +20,11 @@ function showData(dataArray) {
 }
 
 // Escribe el código necesario para realizar el fetch al archivo con los datos y mostrar los estudiantes con la función showData
+fetch(DATA_URL)
+  .then((response)=>response.json())
+  .then((dataArray)=>{
+    showData(dataArray.students);
+  })
+  .catch((error)=>{
+    console.log("Error al cargar los datos", error);
+  })
